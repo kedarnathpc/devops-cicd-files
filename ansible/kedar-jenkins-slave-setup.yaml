@@ -1,0 +1,43 @@
+---
+- hosts: kedar-jenkins-slave
+  become: true
+  tasks:
+  - name: update ubuntu repo and cache
+    apt:
+      update_cache: yes
+      cache_valid_time: 3600
+
+  - name: install golang-go
+    apt:
+      name: golang-go
+      state: present
+
+  - name: install java
+    apt:
+      name: openjdk-17-jre
+      state: present
+
+  - name: install docker
+    apt:
+      name: docker.io
+      state: present
+
+  - name: start docker services
+    service:
+      name: docker
+      state: started
+      enabled: yes
+
+  - name: give 777 permissions on /var/run/docker.sock
+    file:
+      path: /var/run/docker.sock
+      state: file
+      mode: 0777
+
+  - name: add docker user to sudo group
+    user:
+      name: docker
+      groups: sudo
+      append: yes
+
+      

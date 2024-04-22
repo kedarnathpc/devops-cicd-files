@@ -1,0 +1,9 @@
+check error : kubectl describe {pod name} -n miniproject 
+
+ewoJImF1dGhzIjogewoJCSJtaW5pcHJvamVjdDMuamZyb2cuaW8iOiB7CgkJCSJhdXRoIjogIk1qQXdNbkJqYTJWa1lYSnVZWFJvUUdkdFlXbHNMbU52YlRwRGFHRjJZVzVBTnc9PSIKCQl9Cgl9Cn0=
+
+open port
+
+aws eks update-kubeconfig --region ap-south-1 --name miniproject-eks-01
+check : kubectl get all
+        kubectl get all -n miniproject
